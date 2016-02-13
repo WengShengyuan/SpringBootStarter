@@ -92,13 +92,16 @@ public class GenericDaoImpl<T> implements GenericDao<T> {
 
 	@Override
 	public void clearTable() throws Exception {
-		List<T> resultList = null;
-		String sql = "from " + getPersistentClass().getName() + " obj ";
-		TypedQuery<T> query = em.createQuery(sql, this.getPersistentClass());
-		resultList = query.getResultList();
-		for (T obj : resultList) {
-			delete(obj);
-		}
+//		List<T> resultList = null;
+//		String sql = "from " + getPersistentClass().getName() + " obj ";
+//		TypedQuery<T> query = em.createQuery(sql, this.getPersistentClass());
+//		resultList = query.getResultList();
+//		for (T obj : resultList) {
+//			delete(obj);
+//		}
+		String sql = "DELETE FROM " + getPersistentClass().getName();
+		Query q = em.createQuery(sql);
+		q.executeUpdate();
 	}
 
 }
