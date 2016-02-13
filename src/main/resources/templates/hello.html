@@ -1,0 +1,22 @@
+<html>
+<body>
+
+
+<h1>hello</h1>
+<p>world</p>
+<p> this is a templet test <strong th:text = "${data}">data</strong></p>
+<br></br>
+
+<p>Data from Session: <strong th:text="${value}"></strong></p>
+
+<br></br>
+<h2>----list-----</h2>
+<ul>
+
+<li th:each="item : ${list}" th:text="${item.col1}">
+</li>
+
+</ul>
+
+</body>
+</html>
