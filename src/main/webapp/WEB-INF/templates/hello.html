@@ -10,6 +10,9 @@
 <p>Data from Session: <strong th:text="${value}"></strong></p>
 <img th:src="@{/img/img.jpg}" style="height:50px; width:100px"></img>
 <br></br>
+
+<button id="doLogout" onClick="doLogout();">doLogout</button>
+
 <h2>----list-----</h2>
 <ul>
 
@@ -17,6 +20,14 @@
 </li>
 
 </ul>
+
+<script type="text/javascript">
+
+function doLogout(){
+	alert('logging out');
+}
+
+</script>
 
 </body>
 </html>
