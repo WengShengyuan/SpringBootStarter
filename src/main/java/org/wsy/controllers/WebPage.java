@@ -1,6 +1,5 @@
 package org.wsy.controllers;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,17 +8,14 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.wsy.core.modules.testtable.domain.TestTable;
 import org.wsy.core.modules.testtable.service.TestTableService;
-import org.wsy.core.modules.user.domain.ROLE;
 import org.wsy.core.modules.user.domain.SystemUser;
 import org.wsy.core.modules.user.service.SystemUserService;
 
@@ -43,12 +39,10 @@ public class WebPage {
 	        SystemUser admin = new SystemUser();
 	        admin.setPassword("admin");
 	        admin.setUserName("admin");
-	        admin.setRole(ROLE.admin);
 	        
 	        SystemUser user = new SystemUser();
 	        user.setPassword("user");
 	        user.setUserName("user");
-	        user.setRole(ROLE.user);
 	        
 	        try {
 				systemUserService.save(admin);
@@ -97,10 +91,10 @@ public class WebPage {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "api/doLogin")
+	@RequestMapping(value = "api/doLogin/{name}/{password}")
 	public String doLogin(HttpServletRequest request, HttpServletResponse response,
-			@RequestParam("name") String name,
-			@RequestParam("password") String password){
+			@PathVariable("name") String name,
+			@PathVariable("password") String password){
 		System.out.println("Logging in --> " + name + " : " + password);
 		SystemUser user;
 		try {
@@ -112,14 +106,6 @@ public class WebPage {
 			return "No User";
 		}
 		
-		 List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-	        authorities.add(new SimpleGrantedAuthority(user.getRole().getName()));
-	        System.err.println("username is " + name + ", " + user.getRole().getName());
-		
-	        User userDetail =  new org.springframework.security.core.userdetails.User(user.getUserName(),
-	                user.getPassword(), authorities);
-	        
-	        System.out.println(userDetail);
 	        
 		return null;
 	}
