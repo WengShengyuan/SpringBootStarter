@@ -14,7 +14,7 @@ public class InitClass {
 	
 	 @PostConstruct
 	  public void dataInit(){
-		 initializerService.intUserAndRoles();
+//		 initializerService.intUserAndRoles();
 	 }
 		 
 	

@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.wsy.core.generic.staticparams.StaticParams;
 
+/**
+ * 整个Controller 仅允许ADMIN权限的人员使用
+ * @author Administrator
+ *
+ */
 @Controller
 @RequestMapping(value = StaticParams.PATH.AUTHADMIN)
 public class AdminExclusive {

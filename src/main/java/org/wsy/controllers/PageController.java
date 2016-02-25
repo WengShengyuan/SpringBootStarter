@@ -6,9 +6,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,6 +29,14 @@ public class PageController {
 	
 	@Resource(name = "UserRoleServiceImpl")
 	private UserRoleService userRoleService;
+	
+	
+	@RequestMapping(value = "/")
+	public ModelAndView root(){
+		ModelAndView view = new ModelAndView();
+		view.setViewName("redirect:/hello");
+		return view;
+	}
 	
 	@ResponseBody
 	@RequestMapping(StaticParams.PATH.NOAUTH)

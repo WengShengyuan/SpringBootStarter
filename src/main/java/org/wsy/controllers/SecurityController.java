@@ -4,9 +4,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +24,13 @@ public class SecurityController {
 	@Resource(name = "UserRoleServiceImpl")
 	private UserRoleService userRoleService;
 	
+	
+	/**
+	 * 默认登陆页面
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public ModelAndView login(HttpServletRequest request, HttpServletResponse response){
 		ModelAndView view = new ModelAndView();
@@ -34,6 +38,16 @@ public class SecurityController {
 		return view;
 	}
 	
+	
+	
+	/**
+	 * 登陆接口，不能被拦截
+	 * @param request
+	 * @param response
+	 * @param name
+	 * @param password
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value = StaticParams.PATH.NOAUTH+"/api/doLogin/{name}/{password}")
 	public String doLogin(HttpServletRequest request, HttpServletResponse response,
@@ -53,9 +67,15 @@ public class SecurityController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = StaticParams.PATH.NOAUTH+"/api/doLogout")
+	@RequestMapping(value = "/logout")
 	public String doLogout(HttpServletRequest request, HttpServletResponse response){
 		return "logout";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/logoutsuccess")
+	public String logoutSuccess(){
+		return "logout success";
 	}
 	
 }

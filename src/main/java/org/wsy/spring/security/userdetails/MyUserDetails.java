@@ -24,7 +24,7 @@ public class MyUserDetails extends SystemUser implements UserDetails{
 		for(UserRole role : roles){
 			commaBuilder.append(role.getRole()).append(",");
 		}
-		String authorities = commaBuilder.substring(commaBuilder.length()-1);
+		String authorities = commaBuilder.substring(0,commaBuilder.length()-1);
 		return AuthorityUtils.commaSeparatedStringToAuthorityList(authorities);
 	}
 

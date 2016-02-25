@@ -43,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.and()
 		.formLogin().loginPage("/login").permitAll()
 		.and()
-		.logout().logoutUrl("/logout").deleteCookies("remember-me").logoutSuccessUrl("/nopass").permitAll();
+		.logout().permitAll();
 	}
 
 	@Autowired
