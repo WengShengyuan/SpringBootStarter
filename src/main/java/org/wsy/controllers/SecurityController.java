@@ -27,9 +27,6 @@ public class SecurityController {
 	@Resource(name = "UserRoleServiceImpl")
 	private UserRoleService userRoleService;
 	
-	@Autowired
-	private Authentication authentication;
-	
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public ModelAndView login(HttpServletRequest request, HttpServletResponse response){
 		ModelAndView view = new ModelAndView();
@@ -52,16 +49,12 @@ public class SecurityController {
 		if(user == null){
 			return "No User";
 		}
-		
-	        
 		return null;
 	}
 	
 	@ResponseBody
 	@RequestMapping(value = StaticParams.PATH.NOAUTH+"/api/doLogout")
 	public String doLogout(HttpServletRequest request, HttpServletResponse response){
-		UserDetails currentUser = (UserDetails) authentication.getPrincipal();
-		System.out.println("current : "+ currentUser.getUsername());
 		return "logout";
 	}
 	

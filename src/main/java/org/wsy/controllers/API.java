@@ -14,8 +14,6 @@ import org.wsy.core.modules.testtable.domain.TestTable;
 @RequestMapping("/api")
 public class API {
 	
-	@Autowired
-	private Authentication authentication;
 	
 	@ResponseBody
 	@RequestMapping("pushSession/{value}")

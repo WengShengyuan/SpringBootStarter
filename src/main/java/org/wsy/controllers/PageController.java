@@ -32,9 +32,6 @@ public class PageController {
 	@Resource(name = "UserRoleServiceImpl")
 	private UserRoleService userRoleService;
 	
-	@Autowired
-	private Authentication authentication;
-	
 	@ResponseBody
 	@RequestMapping(StaticParams.PATH.NOAUTH)
 	public String noPass(){

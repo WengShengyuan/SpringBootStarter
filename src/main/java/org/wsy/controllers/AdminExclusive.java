@@ -12,9 +12,6 @@ import org.wsy.core.generic.staticparams.StaticParams;
 @RequestMapping(value = StaticParams.PATH.AUTHADMIN)
 public class AdminExclusive {
 	
-	@Autowired
-	private Authentication authentication;
-	
 	
 	@ResponseBody
 	@RequestMapping(value = "greeting", method = RequestMethod.GET)
