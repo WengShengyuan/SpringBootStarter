@@ -4,6 +4,9 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +26,9 @@ public class SecurityController {
 	
 	@Resource(name = "UserRoleServiceImpl")
 	private UserRoleService userRoleService;
+	
+	@Autowired
+	private Authentication authentication;
 	
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public ModelAndView login(HttpServletRequest request, HttpServletResponse response){
@@ -54,6 +60,8 @@ public class SecurityController {
 	@ResponseBody
 	@RequestMapping(value = StaticParams.PATH.NOAUTH+"/api/doLogout")
 	public String doLogout(HttpServletRequest request, HttpServletResponse response){
+		UserDetails currentUser = (UserDetails) authentication.getPrincipal();
+		System.out.println("current : "+ currentUser.getUsername());
 		return "logout";
 	}
 	

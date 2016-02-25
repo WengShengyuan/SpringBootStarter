@@ -3,19 +3,20 @@ package org.wsy.controllers;
 import java.util.Date;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.wsy.core.generic.staticparams.StaticParams;
 import org.wsy.core.modules.testtable.domain.TestTable;
 import org.wsy.core.modules.testtable.service.TestTableService;
-import org.wsy.core.modules.user.domain.SystemUser;
-import org.wsy.core.modules.user.domain.UserRole;
 import org.wsy.core.modules.user.service.SystemUserService;
 import org.wsy.core.modules.user.service.UserRoleService;
 
@@ -31,10 +32,20 @@ public class PageController {
 	@Resource(name = "UserRoleServiceImpl")
 	private UserRoleService userRoleService;
 	
+	@Autowired
+	private Authentication authentication;
+	
 	@ResponseBody
 	@RequestMapping(StaticParams.PATH.NOAUTH)
 	public String noPass(){
 		return "noauth";
+	}
+	
+	@ResponseBody
+	@PreAuthorize("hasAuthority('"+StaticParams.USERROLE.ROLE_ADMIN+"')")
+	@RequestMapping(value = "adminrequire", method = RequestMethod.GET)
+	public String adminrequire(){
+		return "HELLO from web but you should be admin";
 	}
 	
 	@RequestMapping("hello")
