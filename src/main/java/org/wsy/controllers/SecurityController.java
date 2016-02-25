@@ -32,7 +32,7 @@ public class SecurityController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = StaticParams.PATH.NOAUTH+"api/doLogin/{name}/{password}")
+	@RequestMapping(value = StaticParams.PATH.NOAUTH+"/api/doLogin/{name}/{password}")
 	public String doLogin(HttpServletRequest request, HttpServletResponse response,
 			@PathVariable("name") String name,
 			@PathVariable("password") String password){
@@ -52,7 +52,7 @@ public class SecurityController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = StaticParams.PATH.NOAUTH+"api/doLogout")
+	@RequestMapping(value = StaticParams.PATH.NOAUTH+"/api/doLogout")
 	public String doLogout(HttpServletRequest request, HttpServletResponse response){
 		return "logout";
 	}
