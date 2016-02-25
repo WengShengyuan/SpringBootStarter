@@ -20,6 +20,9 @@ public class MyUserDetails extends SystemUser implements UserDetails{
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
+		if(roles == null || roles.size() <1){
+			return AuthorityUtils.commaSeparatedStringToAuthorityList("");
+		}
 		StringBuilder commaBuilder = new StringBuilder();
 		for(UserRole role : roles){
 			commaBuilder.append(role.getRole()).append(",");
