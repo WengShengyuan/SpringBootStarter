@@ -9,12 +9,16 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.wsy.core.generic.staticparams.StaticParams;
+import org.wsy.spring.security.authenticationprovider.MyAuthenticationProvider;
 
 @Configurable
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+	@Autowired
+	private MyAuthenticationProvider provider;
+	
 	@Autowired
 	private UserDetailsService userDetailsService;
 	
@@ -44,7 +48,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().withUser("user").password("password").roles("USER");
+		//将验证过程交给自定义验证工具
+		auth.authenticationProvider(provider);
+		
+//		auth.inMemoryAuthentication().withUser("user").password("password").roles("USER");
 	}
 
 }
