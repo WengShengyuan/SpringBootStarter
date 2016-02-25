@@ -33,12 +33,24 @@
 			<artifactId>spring-session</artifactId>
 		</dependency>
 		<dependency>
+	        <groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-starter-cache</artifactId>
+	    </dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<!-- 只有在打包成war包时候使用 -->
+			<exclusions>
+	           	<exclusion>
+	           		<groupId>org.springframework.boot</groupId>
+	        		<artifactId>spring-boot-starter-tomcat</artifactId>
+	           	</exclusion>
+           </exclusions> 
+           <!-- 只有在打包成war包时候使用 -->
 		</dependency>
 		
 		<dependency>
@@ -58,15 +70,28 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		<!-- c3p0 -->
+		<dependency>
+			<groupId>c3p0</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>0.9.1.2</version>
+		</dependency>
+		<!-- ehcache -->
+		<dependency>
+	        <groupId>net.sf.ehcache</groupId>
+	        <artifactId>ehcache</artifactId>
+	    </dependency>
+		
 	</dependencies>
 	
 	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
+	    <plugins>
+	        <plugin>
+	            <groupId>org.springframework.boot</groupId>
+	            <artifactId>spring-boot-maven-plugin</artifactId>
+	        </plugin>
+	    </plugins>
 	</build>
 	
 

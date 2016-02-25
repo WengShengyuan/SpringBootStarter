@@ -16,8 +16,12 @@ public class UserRole {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@Column(name = "role")
 	private String role;
+	
+	@Column(name = "user_id")
 	private Long userId;
+	
 	public Long getId() {
 		return id;
 	}

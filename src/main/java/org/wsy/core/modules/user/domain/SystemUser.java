@@ -18,7 +18,10 @@ public class SystemUser {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@Column(name = "user_name")
 	private String userName;
+	
+	@Column(name = "password")
 	private String password;
 
 	public SystemUser(){}

@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 @SuppressWarnings(value = { "unchecked", "unused" })
@@ -17,6 +18,7 @@ public class GenericDaoImpl<T> implements GenericDao<T> {
 
 	@PersistenceContext
 	protected EntityManager em;
+	
 	private Class<T> persistentClass;
 
 	public GenericDaoImpl() {

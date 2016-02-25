@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
+import org.hibernate.annotations.Cache;
 import org.springframework.stereotype.Service;
 import org.wsy.core.modules.testtable.dao.TestTableDao;
 import org.wsy.core.modules.testtable.domain.TestTable;
