@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.wsy.core.generic.staticparams.StaticParams;
 import org.wsy.core.modules.user.dao.SystemUserDao;
 import org.wsy.core.modules.user.dao.UserRoleDao;
 import org.wsy.core.modules.user.domain.SystemUser;
@@ -39,12 +40,12 @@ public class InitializerService {
 			UserRole rAdmin = new UserRole();
 //			rAdmin.setId(1L);
 			rAdmin.setUserId(admin.getId());
-			rAdmin.setRole("ADMIN");
+			rAdmin.setRole(StaticParams.USERROLE.ROLE_ADMIN);
 			
 			UserRole rUser = new UserRole();
 //			rUser.setId(2L);
 			rUser.setUserId(user.getId());
-			rUser.setRole("USER");
+			rUser.setRole(StaticParams.USERROLE.ROLE_USER);
 			
 			systemUserDao.save(admin);
 			systemUserDao.save(user);
