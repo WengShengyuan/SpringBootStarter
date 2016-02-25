@@ -31,9 +31,9 @@ public class PageController {
 	private UserRoleService userRoleService;
 	
 	@ResponseBody
-	@RequestMapping("nopass")
+	@RequestMapping("noauth")
 	public String noPass(){
-		return "noPass";
+		return "noauth";
 	}
 	
 	@RequestMapping("hello")

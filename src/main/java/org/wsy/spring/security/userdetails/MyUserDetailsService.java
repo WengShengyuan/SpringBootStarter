@@ -1,4 +1,4 @@
-package org.wsy.spring.security;
+package org.wsy.spring.security.userdetails;
 
 import java.util.List;
 

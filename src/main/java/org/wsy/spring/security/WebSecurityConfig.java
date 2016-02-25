@@ -8,6 +8,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.wsy.core.generic.staticparams.StaticParams;
+import org.wsy.spring.security.userdetails.MyUserDetailsService;
 
 @Configurable
 @EnableWebSecurity
@@ -25,13 +27,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-		.antMatchers("/nopass","/img/**","/js/**", "/api/**").permitAll()//not require authentication
+		.antMatchers("/noauth","/img/**","/js/**","/css/**","/resource/**", "/api/**").permitAll()//无需访问权限
+		.antMatchers("/ad-auth/**").hasAuthority(StaticParams.USERROLE.ROLE_ADMIN)//admin角色访问权限
+		.antMatchers("/auth/**").hasAuthority(StaticParams.USERROLE.ROLE_USER)//user角色访问权限
 		.anyRequest()//all others request authentication
 		.authenticated()
 		.and()
-		.formLogin()
-		.loginPage("/login").permitAll()
-		.and().logout().permitAll();
+		.formLogin().loginPage("/login").permitAll()
+		.and()
+		.logout().logoutUrl("/logout").deleteCookies("remember-me").logoutSuccessUrl("/nopass").permitAll();
 	}
 
 	@Autowired
