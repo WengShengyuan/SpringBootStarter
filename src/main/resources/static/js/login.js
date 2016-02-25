@@ -7,14 +7,17 @@ function doLogin(){
 	
 	
 	$.ajax({
-		  type: 'POST',
-		  url: '/api/doLogin',
-		  data: {name : name, password : password},
-		  success: function(data, status){
-				alert(data);
-				alert(status);
-			}
-		});
+		url : '/api/doLogin',
+		data : {name : name, password : password},
+		async : true,
+		type : 'POST'
+	}).done(function(r){
+//		alert(r);
+		$('#ta').val(r);
+	}).fail(function(err){
+//		alert(err);
+		$('#ta').val(err);
+	});
 	
 }
 
