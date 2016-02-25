@@ -21,6 +21,13 @@ public class SystemUser {
 	private String userName;
 	private String password;
 
+	public SystemUser(){}
+	
+	public SystemUser(SystemUser user){
+		this.userName = user.getUserName();
+		this.password = user.getPassword();
+		this.id = user.getId();
+	}
 	
 	public Long getId() {
 		return id;
