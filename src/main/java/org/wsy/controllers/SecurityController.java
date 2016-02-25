@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.wsy.core.generic.staticparams.StaticParams;
 import org.wsy.core.modules.user.domain.SystemUser;
 import org.wsy.core.modules.user.service.SystemUserService;
 import org.wsy.core.modules.user.service.UserRoleService;
@@ -31,7 +32,7 @@ public class SecurityController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "api/doLogin/{name}/{password}")
+	@RequestMapping(value = StaticParams.PATH.NOAUTH+"api/doLogin/{name}/{password}")
 	public String doLogin(HttpServletRequest request, HttpServletResponse response,
 			@PathVariable("name") String name,
 			@PathVariable("password") String password){
@@ -51,7 +52,7 @@ public class SecurityController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "api/doLogout")
+	@RequestMapping(value = StaticParams.PATH.NOAUTH+"api/doLogout")
 	public String doLogout(HttpServletRequest request, HttpServletResponse response){
 		return "logout";
 	}

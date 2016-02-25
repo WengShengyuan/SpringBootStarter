@@ -7,7 +7,7 @@ function doLogin(){
 	
 	
 	$.ajax({
-		url : '/api/doLogin',
+		url : '/no-auth/api/doLogin',
 		data : {name : name, password : password},
 		async : true,
 		type : 'POST'

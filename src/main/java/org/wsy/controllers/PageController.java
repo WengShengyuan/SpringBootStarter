@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.wsy.core.generic.staticparams.StaticParams;
 import org.wsy.core.modules.testtable.domain.TestTable;
 import org.wsy.core.modules.testtable.service.TestTableService;
 import org.wsy.core.modules.user.domain.SystemUser;
@@ -31,7 +32,7 @@ public class PageController {
 	private UserRoleService userRoleService;
 	
 	@ResponseBody
-	@RequestMapping("noauth")
+	@RequestMapping(StaticParams.PATH.NOAUTH)
 	public String noPass(){
 		return "noauth";
 	}
