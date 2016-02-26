@@ -44,7 +44,4 @@ public class TestTable {
 		this.col2 = col2;
 	}
 
-	
-	
-
 }
